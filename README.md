@@ -2,7 +2,7 @@ Attenion is all you need 这篇paper提出了transformer架构，Transformer提�
 
 RNN对于输入序列无法进行并行化运算，即RNN得输出不可以同时得到，RNN运算是依赖于序列的输入顺序，即当前的输出是依赖于之前的运算，如果是对于单向的RNN,当前时间节点的输出是在看过之前输入的部分得到的，而双向RNN当前的输出是在看过所有输入得到的，但是必须在之前时间节点计算出hidden state等才能得到当前的输出，即无法并行化运算是RNN处理序列问题一个计算瓶颈，而transformer则可以同时得到所有输出序列，即计算输出序列的每个元素的操作是并行的，但同时这也意味着输入序列的顺序并未被考虑进去，而输入序列的顺序则代表着语义信息，因此增加position encoding部分来解决transformer的顺序问题。Transformer也是用的encoder和decoder的架构，但是encoder和decoder的内部不再是RNN,而是self-attention.下图是transformer的架构
 
-![](https://github.com/zhulinspace/transformer/raw/master/img/network.png)
+![](https://github.com/zhulinspace/transformer/blob/master/img/network.png)
 
 大体框架是：
 
@@ -24,15 +24,15 @@ self-attention作为attenion的一种机制，it allows the inputs to interact w
 
 input-embedding和position encoding相加后作为self-attention的输入input，对input做三个不同的线性变化操作得到Q,K,V ，Q和K的转置除以根号下k的维度得到 alignment score，进行softmax后与V相乘得到self-attention层的输出
 
-![](https://github.com/zhulinspace/transformer/blob/master/img/self-attention matrix.png)
+![](https://github.com/zhulinspace/transformer/blob/master/img/self_attention_matrix.png)
 
-![](https://github.com/zhulinspace/transformer/blob/master/img/attention formulate.png)
+![](https://github.com/zhulinspace/transformer/blob/master/img/attention_formulate.png)
 
 而muti-head attention则是将最后结果进行concatenate
 
-![muti-head attention](https://github.com/zhulinspace/transformer/blob/master/img/muti-head attention.png)
+![muti-head attention](https://github.com/zhulinspace/transformer/blob/master/img/muti_head_attention.png)
 
-![muti-head operation](https://github.com/zhulinspace/transformer/blob/master/img/muti-head operation.png)
+![muti-head operation](https://github.com/zhulinspace/transformer/blob/master/img/muti_head_operation.png)
 
 ## Position encoding
 
@@ -46,7 +46,7 @@ input-embedding和position encoding相加后作为self-attention的输入input�
 
 则定义可以产生pt的函数f如下：
 
-![ ](https://github.com/zhulinspace/transformer/blob/master/img/positional encoding_1.png)
+![ ](https://github.com/zhulinspace/transformer/blob/master/img/positional_encoding_1.png)
 
 其中embeded的维度和position encoding的维度要相同，否则不能相加。
 
@@ -58,7 +58,7 @@ LN和BN(batch norm)是两种常见的归一化方法，而LN是较常用于RNN�
 
 - BN: it normalize the input feature across the batch dimension
 
-  ![LN and BN](https://github.com/zhulinspace/transformer/blob/master/img/LN and BN.PNG)
+  ![LN and BN](https://github.com/zhulinspace/transformer/blob/master/img/LN_and_BN.PNG)
 
 
 
