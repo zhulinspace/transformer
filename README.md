@@ -2,7 +2,7 @@ Attenion is all you need 这篇paper提出了transformer架构，Transformer提�
 
 RNN对于输入序列无法进行并行化运算，即RNN得输出不可以同时得到，RNN运算是依赖于序列的输入顺序，即当前的输出是依赖于之前的运算，如果是对于单向的RNN,当前时间节点的输出是在看过之前输入的部分得到的，而双向RNN当前的输出是在看过所有输入得到的，但是必须在之前时间节点计算出hidden state等才能得到当前的输出，即无法并行化运算是RNN处理序列问题一个计算瓶颈，而transformer则可以同时得到所有输出序列，即计算输出序列的每个元素的操作是并行的，但同时这也意味着输入序列的顺序并未被考虑进去，而输入序列的顺序则代表着语义信息，因此增加position encoding部分来解决transformer的顺序问题。Transformer也是用的encoder和decoder的架构，但是encoder和decoder的内部不再是RNN,而是self-attention.下图是transformer的架构
 
-![](https://github.com/zhulinspace/transformer/blob/master/img/network.png)
+![](https://github.com/zhulinspace/transformer/raw/master/img/network.png)
 
 大体框架是：
 
